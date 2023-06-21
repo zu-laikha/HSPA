@@ -16,6 +16,10 @@ import { UserRegisterComponent } from './user/user-register/user-register/user-r
 import { UserService } from './services/user.service';
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 const appRoutes: Routes = [
   {path: '', component: PropertyListComponent},
@@ -43,7 +47,11 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule, //template driven approach
     ReactiveFormsModule, //reactive form approach
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes), 
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatCardModule,
+    MatButtonToggleModule
   ],
   providers: [
     HousingService,
