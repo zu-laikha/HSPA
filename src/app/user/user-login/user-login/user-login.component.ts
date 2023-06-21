@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Route, Router } from '@angular/router';
-import { AlertifyService } from 'src/app/services/alertify.service';
+import { ToastService } from 'src/app/services/toast.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { EventTypes } from 'src/app/model/event-types';
 
 @Component({
   selector: 'app-user-login',
@@ -11,9 +12,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserLoginComponent implements OnInit {
 
+  EventTypes = EventTypes;
+  
   constructor(
     private authService: AuthService,
-    private alertify: AlertifyService,
+    private toastService: ToastService,
     private router: Router) {}
 
   ngOnInit() {
@@ -26,11 +29,11 @@ export class UserLoginComponent implements OnInit {
 
     if(token) {
       localStorage.setItem('token', token.userName);
-      this.alertify.success('Login Sucessful');
+      this.toastService.showSuccessToast('Login Successful', 'Congrats, you are successfully login');
       //redirect our user to the base URL
       this.router.navigate(['/']);
     } else {
-      this.alertify.error('user id or password is wrong');
+      this.toastService.showErrorToast('Login Failed', 'User ID or password is wrong');
     }
 
   }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertifyService } from '../services/alertify.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { EventTypes } from 'src/app/model/event-types';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,8 +11,11 @@ import { AlertifyService } from '../services/alertify.service';
 export class NavBarComponent implements OnInit {
 
   loggedinUser: string | null = null;
+  EventTypes = EventTypes;
 
-  constructor(private alertify: AlertifyService) { }
+  constructor(
+    private toastService: ToastService,
+    ) { }
 
   ngOnInit() {
   }
@@ -24,6 +29,6 @@ export class NavBarComponent implements OnInit {
   onLogout() {
     //remove token when logout
     localStorage.removeItem('token');
-    this.alertify.success("You are logged out");
+    this.toastService.showSuccessToast('User Logout', 'You are logged out');
   }
 }

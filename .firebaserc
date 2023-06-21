@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "hspa-zu"
+  },
+  "targets": {
+    "hspa-zu": {
+      "hosting": {
+        "hspa": [
+          "hspa-zu"
+        ]
+      }
+    }
+  }
+}
