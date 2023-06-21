@@ -25,9 +25,35 @@
           <li *ngIf="!loggedin()" class="nav-item">
             <a class="nav-link" routerLink="user/login" routerLinkActive="active">Login</a>
           </li>
-          <li *ngIf="loggedin()" class="nav-item">
+          <!-- <li *ngIf="loggedin()" class="nav-item">
             <a class="nav-link" (click)="onLogout()">Logout</a>
-          </li>
+          </li> -->
+          <div class="dropdown">
+            <div *ngIf="loggedin()" class="dropdown me-5">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Welcome {{ loggedinUser }}
+              </a>
+
+              <ul class="dropdown-menu">
+                <a href="#" class="dropdown-item">
+                  <i class="fa-solid fa-gauge"></i>
+                  View Dashboard
+                </a>
+                <a href="#" class="dropdown-item">
+                  <i class="fa-solid fa-address-card"></i>
+                  My Profile
+                </a>
+                <a href="#" class="dropdown-item">
+                  <i class="fa-solid fa-key"></i>
+                  Change Password
+                </a>
+                <a (click)='onLogout()' class="dropdown-item">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  Logout
+                </a>
+              </ul>
+            </div>
+          </div>
         </ul>
       </div>
     </div>
