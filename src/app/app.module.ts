@@ -14,12 +14,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserLoginComponent } from './user/user-login/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register/user-register.component';
 import { UserService } from './services/user.service';
-import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { ToasterComponent } from './toaster/toaster.component';
+import { ToastComponent } from './toast/toast.component';
+import { ToastService } from './services/toast.service';
 
 const appRoutes: Routes = [
   {path: '', component: PropertyListComponent},
@@ -40,7 +42,9 @@ const appRoutes: Routes = [
     AddPropertyComponent,
     PropertyDetailComponent,
     UserLoginComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    ToasterComponent,
+    ToastComponent
    ],
   imports: [
     BrowserModule,
@@ -56,8 +60,8 @@ const appRoutes: Routes = [
   providers: [
     HousingService,
     UserService,
-    AlertifyService,
-    AuthService
+    AuthService,
+    ToastService
   ],
   bootstrap: [AppComponent]
 })

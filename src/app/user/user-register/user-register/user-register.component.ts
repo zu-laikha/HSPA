@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, Form, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { EventTypes } from 'src/app/model/event-types';
 import { User } from 'src/app/model/user';
-import { AlertifyService } from 'src/app/services/alertify.service';
+import { ToastService } from 'src/app/services/toast.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,11 +15,14 @@ export class UserRegisterComponent implements OnInit{
   registrationForm!: FormGroup;
   user!: User;
   userSubmitted!: boolean;
+  EventTypes = EventTypes;
 
   constructor (
     private fb: FormBuilder, 
     private userService: UserService, 
-    private alertify: AlertifyService) {}
+    // private alertify: AlertifyService,
+    private toastService: ToastService
+    ) {}
 
   ngOnInit() {
   //   this.registrationForm = new FormGroup({
@@ -79,10 +83,10 @@ export class UserRegisterComponent implements OnInit{
       this.userService.addUser(this.userData());
       this.registrationForm.reset();
       this.userSubmitted = false;
-      this.alertify.success('Congrats, you are successfully registered');
+      this.toastService.showSuccessToast('Registration Successful', 'Congrats, you are successfully registered');
     }
     else {
-      this.alertify.error('Kindly provide the required fields');
+      this.toastService.showErrorToast('Registration Failed', 'Kindly provide the required fields');
     }
   }
 
